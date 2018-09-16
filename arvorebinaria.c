@@ -18,6 +18,27 @@ No *criararvore(int info, No *esquerda, No *direita){  // função para criar o 
 	return raiz;
 }
 
+No *inserir (int info, No *arvore){  // inserir um novo nó na arvore
+	if(arvore == NULL){
+		arvore = criararvore(info, NULL, NULL);
+	} else if( info < arvore->valor){
+		arvore->esq = inserir(info, arvore->esq);
+		arvore->esq->pai = arvore;
+	} else{
+		arvore->dir = inserir(info, arvore->dir);
+		arvore->dir-> = arvore;
+	}
+}
+
+void preordem (No raiz){
+	if (raiz != NULL){
+		printf(" %d", raiz->valor );
+		preordem(raiz->esq);
+		preordem(raiz->dir);
+	}
+}
+
+
 
 
 int main(int argc, char const *argv[])

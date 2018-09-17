@@ -21,20 +21,20 @@ struct no *criararvore(int info, No *esquerda, No *direita){
     raiz->valor = info;
     raiz->esq = esquerda;
     raiz->dir = direita;
-    raiz->esq->pai = raiz;
-    raiz->dir->pai = raiz;
+    //raiz->esq->pai = raiz;
+    //raiz->dir->pai = raiz;
     return raiz;
 }
 
 struct no *inserir (int info, No *arvore){  // inserir um novo nó na arvore
     if(arvore == NULL){
         arvore = criararvore(info, NULL, NULL);
-    }else if( info < arvore->valor){
+    }else if(info<arvore->valor){
         arvore->esq = inserir(info, arvore->esq);
-        arvore->esq->pai = arvore;
+       // arvore->esq->pai = arvore;
     } else{
         arvore->dir = inserir(info, arvore->dir);
-        arvore->dir->pai = arvore;
+        //arvore->dir->pai = arvore;
     }
     return arvore;
 }
@@ -77,18 +77,22 @@ int main(){
         scanf("%d",&numeros);
         for (j = 0; j < numeros; j++){
             scanf("%d",&t);
-            arvores[testes] = inserir(t,arvores[testes]);
+            if (j==0) {
+                arvores[i] = criararvore(t, NULL, NULL);
+                continue;
+            }
+            arvores[i] = inserir(t,arvores[i]);
         }
     }
     
     for (i = 0; i < testes; i++){
-        printf("Case %d:",(testes+1));
+        printf("Case %d:",(i+1));
         printf("\nPre.:");
-        preordem(arvores[testes]);
+        preordem(arvores[i]);
         printf("\nIn..:");
-        inordem(arvores[testes]);
+        inordem(arvores[i]);
         printf("\nPost:");
-        posordem(arvores[testes]);
+        posordem(arvores[i]);
         printf("\n\n");
     }
     

@@ -79,6 +79,7 @@ int main(){
             scanf("%d",&t);
             if (j==0) {
                 arvores[i] = criararvore(t, NULL, NULL);
+                continue;
             }
             arvores[i] = inserir(t,arvores[i]);
         }
